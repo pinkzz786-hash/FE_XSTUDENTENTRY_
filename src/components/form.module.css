@@ -16,28 +16,34 @@
   color: #111827;
 }
 
-.formcontainer p {
+.formcontainer > p {
   text-align: center;
   margin: 0 0 25px;
   color: #777;
   font-size: 14px;
 }
 
-/* Form layout */
+/* Form */
+
 .formcontainer form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px 12px;
-  align-items: end;
+  gap: 12px;
 }
 
-.formcontainer label {
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
   font-size: 12px;
   color: #555;
 }
 
-.formcontainer input,
-.formcontainer select {
+.formGroup input,
+.formGroup select {
   width: 100%;
   box-sizing: border-box;
   padding: 9px 10px;
@@ -45,14 +51,16 @@
   border-radius: 6px;
   font-size: 13px;
   outline: none;
+  background-color: white;
 }
 
-.formcontainer input:focus,
-.formcontainer select:focus {
+.formGroup input:focus,
+.formGroup select:focus {
   border-color: #2878f0;
 }
 
-/* Buttons */
+/* Add Student button */
+
 .btn_stu {
   margin-top: 12px;
   padding: 9px 14px;
@@ -67,6 +75,8 @@
 .btn_stu:hover {
   background-color: #1769df;
 }
+
+/* Clear button */
 
 .btn_clr {
   margin-top: 12px;
@@ -85,12 +95,15 @@
 }
 
 /* Student list */
+
 .studentList {
   margin-top: 15px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   overflow: hidden;
 }
+
+/* Empty state */
 
 .studentList > p {
   margin: 0;
@@ -100,23 +113,39 @@
   font-size: 13px;
 }
 
-/* Each student */
+/* Table header */
+
+.studentHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr auto;
+  gap: 10px;
+  padding: 12px 14px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Student row */
+
 .studentRow {
   display: grid;
   grid-template-columns: 2fr 1fr 1.5fr auto;
   align-items: center;
   gap: 10px;
   padding: 12px 14px;
-  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
   font-size: 13px;
   color: #333;
 }
 
-.studentRow:first-child {
-  border-top: none;
+.studentRow:last-child {
+  border-bottom: none;
 }
 
 /* Remove button */
+
 .removeBtn {
   padding: 7px 12px;
   background-color: #ffe1e1;
@@ -132,6 +161,7 @@
 }
 
 /* Mobile */
+
 @media (max-width: 600px) {
   .formcontainer {
     width: 85%;
@@ -142,9 +172,9 @@
     grid-template-columns: 1fr;
   }
 
+  .studentHeader,
   .studentRow {
-    grid-template-columns: 1fr;
-    gap: 6px;
+    grid-template-columns: 1fr 1fr;
   }
 
   .removeBtn {

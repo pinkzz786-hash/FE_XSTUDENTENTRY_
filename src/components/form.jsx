@@ -1,4 +1,4 @@
-import { useState } from "react";
+import  { useState } from "react";
 import styles from "./form.module.css";
 
 function Form() {
@@ -16,7 +16,6 @@ function Form() {
 
     setStudents([...students, newStudent]);
 
-    // Clear the form after adding
     setName("");
     setAge("");
     setGrade("");
@@ -37,14 +36,15 @@ function Form() {
   }
 
   return (
-    <>
-      <div className={styles.formcontainer}>
-        <h1>Student Entry Form</h1>
+    <div className={styles.formcontainer}>
+      <h1>Student Entry Form</h1>
 
-        <p>Add students and review the list below.</p>
+      <p>Add students and review the list below.</p>
 
-        <form>
+      <form>
+        <div className={styles.formGroup}>
           <label>Name</label>
+
           <input
             type="text"
             name="name"
@@ -52,8 +52,11 @@ function Form() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+        </div>
 
+        <div className={styles.formGroup}>
           <label>Age</label>
+
           <input
             type="number"
             name="age"
@@ -61,8 +64,11 @@ function Form() {
             value={age}
             onChange={(e) => setAge(e.target.value)}
           />
+        </div>
 
+        <div className={styles.formGroup}>
           <label>Grade</label>
+
           <select
             name="grade"
             value={grade}
@@ -78,29 +84,38 @@ function Form() {
             <option value="11">11</option>
             <option value="12">12</option>
           </select>
-        </form>
+        </div>
+      </form>
 
-        <button
-          type="button"
-          className={styles.btn_stu}
-          onClick={addStudent}
-        >
-          Add Student
-        </button>
+      <button
+        type="button"
+        className={styles.btn_stu}
+        onClick={addStudent}
+      >
+        Add Student
+      </button>
 
-        <button
-          type="button"
-          className={styles.btn_clr}
-          onClick={clearForm}
-        >
-          Clear
-        </button>
+      <button
+        type="button"
+        className={styles.btn_clr}
+        onClick={clearForm}
+      >
+        Clear
+      </button>
 
-        <div className={styles.studentList}>
-          {students.length === 0 ? (
-            <p>No students added yet.</p>
-          ) : (
-            students.map((student, index) => (
+      <div className={styles.studentList}>
+        {students.length === 0 ? (
+          <p>No students added yet.</p>
+        ) : (
+          <>
+            <div className={styles.studentHeader}>
+              <span>Name</span>
+              <span>Age</span>
+              <span>Grade</span>
+              <span></span>
+            </div>
+
+            {students.map((student, index) => (
               <div className={styles.studentRow} key={index}>
                 <span>{student.name}</span>
 
@@ -116,11 +131,11 @@ function Form() {
                   Remove
                 </button>
               </div>
-            ))
-          )}
-        </div>
+            ))}
+          </>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 
